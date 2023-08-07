@@ -1,4 +1,6 @@
-(local nvim! (. (require :api) :nvim!))
+(local nsimport! (. (require :module) :nsimport!))
+(local export! (nsimport! :module :export!))
+(local nvim! (nsimport! :api :nvim!))
 
 (lambda win-call! [window fun]
   ;; @params
@@ -20,6 +22,6 @@
 (lambda win-get-buf! [window]
   (nvim! :win-get-buf window))
 
-{:win-call! win-call!
- :win-close! win-close!
- :win-get-buf! win-get-buf!}
+(export! [:win-call!
+          :win-close!
+          :win-get-buf!])
